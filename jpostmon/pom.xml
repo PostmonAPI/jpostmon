@@ -1,30 +1,29 @@
-<!--  
-	Copyright 2014 Postmon API (http://postmon.com.br)
-	https://github.com/PostmonAPI 
-	
- 	Licensed under the Apache License, Version 2.0 (the "License");
-	you may not use this file except in compliance with the License.
-	You may obtain a copy of the License at
-
-		http://www.apache.org/licenses/LICENSE-2.0
- 
- 	Unless required by applicable law or agreed to in writing, software
- 	distributed under the License is distributed on an "AS IS" BASIS,
- 	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- 	See the License for the specific language governing permissions and
- 	limitations under the License.
- -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>br.com.postmon.jpostmon</groupId>
 	<artifactId>jpostmon</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.2.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>jpostmon</name>
-	<url>http://maven.apache.org</url>
+	<description>Java wrapper to Postmon API</description>
+	<url>https://github.com/PostmonAPI/postmon-java</url>
+
+	<licenses>
+		<license>
+			<name>Apache License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<scm>
+		<connection>scm:git:ssh://github.com/PostmonAPI/postmon-java.git</connection>
+		<developerConnection>scm:git:ssh://git@github.com/PostmonAPI/postmon-java.git</developerConnection>
+		<url>https://github.com/PostmonAPI/postmon-java</url>
+		<tag>HEAD</tag>
+	</scm>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -48,4 +47,14 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<version>2.5</version>
+			</plugin>
+		</plugins>
+	</build>
 </project>

@@ -25,21 +25,28 @@ import javax.ws.rs.core.Response;
 
 import br.com.postmon.jpostmon.dao.Consultas;
 import br.com.postmon.jpostmon.dao.Endereco;
+import br.com.postmon.jpostmon.dao.Rastreio;
 
 import com.google.gson.Gson;
 
 /**
- * Classe para efetuar consultas a API. Apenas consulta de CEP disponível no momento.
+ * Classe para efetuar consultas a API. Apenas consulta de CEP disponível no
+ * momento.
+ * 
  * @author netomarin
- *
+ * 
  */
 public class Postmon {
 
-	private Consultas consultar;
+	private Consultas tipoConsulta;
+	private Consultas.Provider tipoRastreio;
 	private String cep;
+	private Client client;
+	private String codigoRastreamento;
 
 	private Postmon(Consultas tipoConsulta) {
-		this.consultar = tipoConsulta;
+		client = ClientBuilder.newClient();
+		this.tipoConsulta = tipoConsulta;
 	}
 
 	public static Postmon consultar(Consultas tipoConsulta) {
@@ -51,12 +58,21 @@ public class Postmon {
 		return this;
 	}
 
+	public Postmon provider(Consultas.Provider provider) {
+		this.tipoRastreio = provider;
+		return this;
+	}
+
+	public Postmon codigoRastreio(String codigoRastreamento) {
+		this.codigoRastreamento = codigoRastreamento;
+		return this;
+	}
+
 	public Endereco enviar() throws UnsupportedOperationException {
-		if (consultar.equals(Consultas.CEP)) {
-			Client client = ClientBuilder.newClient();
+		if (tipoConsulta.equals(Consultas.CEP)) {
 			WebTarget target = client.target(
 					APICommons.POSTMON_HOST + APICommons.POSTMON_VER
-							+ APICommons.POSTMON_PATH_CEP).path(cep);
+							+ tipoConsulta).path(cep);
 
 			Invocation.Builder invocationBuilder = target
 					.request(MediaType.APPLICATION_JSON);
@@ -65,6 +81,29 @@ public class Postmon {
 			Gson gson = new Gson();
 			return gson.fromJson(response.readEntity(String.class),
 					Endereco.class);
+		} else {
+			throw new UnsupportedOperationException();
+		}
+	}
+
+	public Rastreio rastrear() {
+		if (tipoConsulta.equals(Consultas.RASTREIO)) {
+			if (tipoRastreio.equals(Consultas.Provider.ECT)) {
+				WebTarget target = client.target(
+						APICommons.POSTMON_HOST + APICommons.POSTMON_VER
+								+ tipoConsulta + tipoRastreio)
+						.path(codigoRastreamento);
+
+				Invocation.Builder invocationBuilder = target
+						.request(MediaType.APPLICATION_JSON);
+
+				Response response = invocationBuilder.get();
+				Gson gson = new Gson();
+				return gson.fromJson(response.readEntity(String.class),
+						Rastreio.class);
+			} else {
+				throw new UnsupportedOperationException();
+			}
 		} else {
 			throw new UnsupportedOperationException();
 		}

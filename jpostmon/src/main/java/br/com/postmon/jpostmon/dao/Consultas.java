@@ -16,11 +16,39 @@
  */
 package br.com.postmon.jpostmon.dao;
 
+
 /**
  * Lista dos tipos de consulta suportadas pelo client.
  * @author netomarin
  *
  */
 public enum Consultas {
-	CEP
+	CEP ("/cep"),
+	RASTREIO ("/rastreio");
+	
+	private String consultaPath;
+	
+	private Consultas(String consultaPath) {
+		this.consultaPath = consultaPath;
+	}
+	
+	@Override
+	public String toString() {
+		return consultaPath;
+	}
+	
+	public enum Provider {
+		ECT ("/ect");
+		
+		private String providerPath;
+		
+		private Provider(String providerPath) {
+			this.providerPath = providerPath;
+		}
+
+		@Override
+		public String toString() {
+			return providerPath;
+		}
+	}
 }

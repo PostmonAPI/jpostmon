@@ -18,22 +18,25 @@ package br.com.postmon.jpostmon;
 
 import br.com.postmon.jpostmon.dao.Consultas;
 import br.com.postmon.jpostmon.dao.Endereco;
-
+import br.com.postmon.jpostmon.dao.Rastreio;
 
 /**
  * Classe para demonstrar o uso da API de consulta de CEP
+ * 
  * @author netomarin
  */
-public class App 
-{	
+public class App {
 	/*
-	 *  TODO mover esse código para um exemplo separado e remover do client
+	 * TODO mover esse código para um exemplo separado e remover do client
 	 */
-    public static void main( String[] args )
-    {
-    	Endereco endereco = Postmon.consultar(Consultas.CEP)
-    			.cep("01011100")
-    			.enviar();
-        System.out.println( endereco.toString() );
-    }
+	public static void main(String[] args) {
+		Endereco endereco = Postmon.consultar(Consultas.CEP).cep("01011100")
+				.enviar();
+		System.out.println(endereco.toString());
+
+		Rastreio rastreio = Postmon.consultar(Consultas.RASTREIO)
+				.provider(Consultas.Provider.ECT)
+				.codigoRastreio("RC227774716CN").rastrear();
+		System.out.println(rastreio.toString());
+	}
 }
