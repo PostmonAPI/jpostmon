@@ -20,8 +20,10 @@ import com.google.gson.annotations.SerializedName;
 
 /**
  * Representação do endereço completo retornado pela chamada a API.
+ * 
  * @author netomarin
- *
+ * @version 1.0.0
+ * 
  */
 public class Endereco {
 
@@ -34,6 +36,9 @@ public class Endereco {
 	private String estado;
 	@SerializedName("estado_info")
 	private EstadoInfo estadoInfo;
+	private String complemento;
+	private String unidade;
+	private String endereco;
 
 	public Endereco() {
 	}
@@ -105,6 +110,30 @@ public class Endereco {
 
 	public void setEstadoInfo(EstadoInfo estadoInfo) {
 		this.estadoInfo = estadoInfo;
+	}
+
+	public String getComplemento() {
+		return complemento;
+	}
+
+	public void setComplemento(String complemento) {
+		this.complemento = complemento;
+	}
+
+	public String getUnidade() {
+		return unidade;
+	}
+
+	public void setUnidade(String unidade) {
+		this.unidade = unidade;
+	}
+
+	public String getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(String endereco) {
+		this.endereco = endereco;
 	}
 
 	@Override

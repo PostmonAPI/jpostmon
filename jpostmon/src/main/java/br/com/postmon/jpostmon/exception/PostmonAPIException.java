@@ -14,41 +14,32 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package br.com.postmon.jpostmon.dao;
-
+package br.com.postmon.jpostmon.exception;
 
 /**
- * Lista dos tipos de consulta suportadas pelo client.
+ * Classe genérica para representar algum erro retornado pela comunicação com a
+ * API. Para qualquer retorno diferente de 200 (OK) pode ser lançada essa
+ * exceção e o código e a mensagem de status podem ser passadas como mensagem da
+ * exceção.
+ * 
  * @author netomarin
- *
+ * @version 1.0.0
  */
-public enum Consultas {
-	CEP ("/cep"),
-	RASTREIO ("/rastreio");
-	
-	private String consultaPath;
-	
-	private Consultas(String consultaPath) {
-		this.consultaPath = consultaPath;
-	}
-	
-	@Override
-	public String toString() {
-		return consultaPath;
-	}
-	
-	public enum Provider {
-		ECT ("/ect");
-		
-		private String providerPath;
-		
-		private Provider(String providerPath) {
-			this.providerPath = providerPath;
-		}
+public class PostmonAPIException extends Exception {
 
-		@Override
-		public String toString() {
-			return providerPath;
-		}
+	private static final long serialVersionUID = 7781999855005293387L;
+
+	private String message;
+
+	public PostmonAPIException() {
+	}
+
+	public PostmonAPIException(String message) {
+		this.message = message;
+	}
+
+	@Override
+	public String getMessage() {
+		return this.message;
 	}
 }

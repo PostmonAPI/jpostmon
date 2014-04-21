@@ -19,12 +19,21 @@ package br.com.postmon.jpostmon;
 /**
  * Classe de constantes para acesso a API Postmon.
  * @author netomarin
+ * @version 1.0.0
  *
  */
 public class APICommons {
 
+	/*
+	 * Endereço do servidor do Postmon API
+	 */
 	public static final String POSTMON_HOST = "http://api.postmon.com.br";
+	
+	/*
+	 * Versão do Postmon utilizada pelo client
+	 */
 	public static final String POSTMON_VER = "/v1";
 	
 	private APICommons() {}
+	
 }

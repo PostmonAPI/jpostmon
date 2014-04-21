@@ -18,24 +18,26 @@ package br.com.postmon.jpostmon.dao;
 
 /**
  * Representação do retorno de Rastreio enviado pelos Correios.
+ * 
  * @author netomarin
- *
+ * @version 1.0.0
+ * 
  */
-public class Rastreio {
+public class Rastreamento {
 
 	private String codigo;
 	private String servico;
 	private Ocorrencia[] historico;
 
-	public Rastreio() {
+	public Rastreamento() {
 	}
 
-	public Rastreio(String codigo, String servico, Ocorrencia[] historico) {
+	public Rastreamento(String codigo, String servico, Ocorrencia[] historico) {
 		super();
 		this.codigo = codigo;
 		this.servico = servico;
 		this.historico = historico;
-	}	
+	}
 
 	public String getCodigo() {
 		return codigo;
@@ -102,17 +104,17 @@ public class Rastreio {
 
 	@Override
 	public String toString() {
-		StringBuilder sb = new StringBuilder("Código: "+codigo);
-		sb.append("\nServiço: "+servico);
-		
+		StringBuilder sb = new StringBuilder("Código: " + codigo);
+		sb.append("\nServiço: " + servico);
+
 		for (Ocorrencia o : historico) {
 			sb.append("\n\tOcorrência: ");
-			sb.append("\n\t\tDetalhe: "+o.getDetalhes());
-			sb.append("\n\t\tLocal: "+o.getLocal());
-			sb.append("\n\t\tData: "+o.getData());
-			sb.append("\n\t\tStatus: "+o.getSituacao());
+			sb.append("\n\t\tDetalhe: " + o.getDetalhes());
+			sb.append("\n\t\tLocal: " + o.getLocal());
+			sb.append("\n\t\tData: " + o.getData());
+			sb.append("\n\t\tStatus: " + o.getSituacao());
 		}
-		
+
 		return sb.toString();
-	}	
+	}
 }
